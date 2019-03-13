@@ -1,4 +1,4 @@
-import HomeComponent from './HomeComponent';
+import HomeComponent from './Home/HomeComponent';
 import CheckoutComponent from './CheckoutComponent';
 import ProductList from './ProductList';
 import PaymentMethod from './PaymentMethod';
