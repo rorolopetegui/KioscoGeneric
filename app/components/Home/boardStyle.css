@@ -1,0 +1,8 @@
+.boardHidden{
+    height: 0vh;
+    transition: all 600ms;
+}
+.boardDisplay{
+    height: 100vh;
+    transition: all 1000ms;
+}

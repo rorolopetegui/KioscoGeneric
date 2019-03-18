@@ -1,14 +1,40 @@
-.item {
-	color: black;
-	width: 100%;
-	position: absolute;
-	opacity: 0;
-	top:0;
-	transition: opacity .75s ease-in-out;
+/* enter right */
+.right-enter {
+	transform: translate(100%);
 }
-.item-active {
-	opacity: 1;
-	transition: opacity 1.75s ease;
-	position: relative;
-	top:0;
+.right-enter.right-enter-active {
+	transform: translate(0);
+	transition: all 1000ms linear;
+}
+/* exit  right*/
+.right-exit {
+	transform: translate(0);
+}
+.right-exit.right-exit-active {
+	transform: translate(-100%);
+	transition: all 1000ms linear;
+}
+.right-exit-done {
+	transform: translate(-100%);
+	opacity: 0;
+}
+/* enter left */
+.left-enter {
+	transform: translate(-100%);
+}
+.left-enter.left-enter-active {
+	transform: translate(0);
+	transition: all 1000ms linear;
+}
+/* exit  left*/
+.left-exit {
+	transform: translate(0);
+}
+.left-exit.left-exit-active {
+	transform: translate(100%);
+	transition: all 1000ms linear;
+}
+.left-exit-done {
+	transform: translate(100%);
+	opacity: 0;
 }
