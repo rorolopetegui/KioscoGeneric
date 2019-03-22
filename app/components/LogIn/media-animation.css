@@ -1,0 +1,32 @@
+.buttonAnimation{
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.animation{
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.loginDisplay{
+	opacity: 1;
+}
+.loginHidden{
+	opacity: 0;
+}
+.loginDisplayNone{
+	display: none;
+}
+.registerDisplay{
+	opacity: 1;
+}
+.registerHidden{
+	opacity: 0;
+}
+.registerDisplayNone{
+	display: none;
+}
