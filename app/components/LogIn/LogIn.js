@@ -135,7 +135,8 @@ class LogIn extends Component {
                         </SendButton>
                         </div>
                         <div style={classes.remarkedContNewAcc}>
-                            <span style={classes.newAccount}>New to Pizza? <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Create an account</div></span>
+                        <span style={classes.newAccount}>New to Pizza? <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Create an account</div></span>
+                        <span style={classes.newAccount}><div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Continue as a Guest</div></span>
                         </div>
                     </div>
                 </div>

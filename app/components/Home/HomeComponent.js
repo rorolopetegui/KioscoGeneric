@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Promos from '../Promos/Promos';
 import LogIn from '../Login/LogIn';
 import CloseModal from './CloseModal';
-import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import './boardStyle.css';
 
 const styles = {
@@ -175,6 +174,7 @@ const styles = {
     newAccountLink: {
       width: '100%',
       color: 'blue',
+      cursor: 'pointer',
     },
     button: {
       container: {
@@ -234,8 +234,19 @@ const styles = {
       },
     },
   },
-  closeModal:{
-
+  closeModal: {
+    circleButton: {
+      width:'50px',
+      height:'50px',
+      color: 'black',
+      position: 'relative',
+      borderStyle: 'solid',
+      borderWidth: '2px',
+      borderRadius: '50px',
+      borderColor: '#C0C0C0',
+      margin: '10px',
+      cursor: 'pointer',
+    },
   },
 };
 /* eslint-disable global-require */
@@ -253,7 +264,7 @@ class HomeComponent extends Component {
         <Promos classes={styles} />
         <div style={styles.boardLogIn} className={displayBoard ? "boardDisplay" : "boardHidden"}>
           <div className={displayBoard ? "" : " loginDisplayNone"}>
-            <CloseModal classes={styles.closeModal} action={this.displayBoard.bind(this)} icon={faFacebookF} />
+            <CloseModal classes={styles.closeModal} action={this.displayBoard.bind(this)} />
             <LogIn showComponents={displayBoard} classes={styles.login} />
           </div>
         </div>
