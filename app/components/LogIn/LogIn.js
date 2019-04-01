@@ -20,6 +20,9 @@ class LogIn extends Component {
         displayRegisterHidden: false,
         displayLogin: true,
         displayLoginHidden: false,
+        isError: false,
+        isMessage: false,
+        message: "",
     };
     submit = () => {
         var found = false;
@@ -30,13 +33,17 @@ class LogIn extends Component {
                 found = true;
             if (found)
                 if (Users[i].password === this.state.password) {
-                    console.log("Logged in");
-                    window.location.assign("/list");
+                    this.setState(state => ({ isMessage: true, isError: false, message: "Logged in!" }));
+                    setTimeout(() => {
+                        this.setState(state => ({ isMessage: false, message: "" }));
+                        window.location.assign("/list");
+                    }, 1000);
+
                 } else
-                    console.log("Wrong Password");
+                    this.setState(state => ({ isMessage: true, isError: true, message: "Wrong password" }));
         }
         if (!found)
-            console.log("Wrong user");
+            this.setState(state => ({ isMessage: true, isError: true, message: "Wrong username" }));
     }
     register = () => {
         var newUser = {};
@@ -46,6 +53,11 @@ class LogIn extends Component {
         newUser["password"] = this.state.password;
         console.log("Register", newUser);
         Users.push(newUser);
+        this.setState(state => ({ isMessage: true, isError: false, message: "User register with success!" }));
+        setTimeout(() => {
+            this.setState(state => ({ isMessage: false, message: "" }));
+            this.displayLogin(true);
+        }, 1000);
     }
     displayRegister = (login) => {
         this.setState(state => ({ displayRegister: !state.displayRegister }));
@@ -66,6 +78,9 @@ class LogIn extends Component {
             if (register)
                 this.displayRegister(false);
         }, 400);
+    }
+    continueAsGuest = () => {
+        window.location.assign("/list");
     }
     cleanFields = () => {
         this.setState({ fullname: "" });
@@ -88,7 +103,7 @@ class LogIn extends Component {
     render() {
         const { classes } = this.props;
         const { displayLogin, displayLoginHidden, displayRegister, displayRegisterHidden,
-            remarkEmail, remarkName, remarkUser, remarkPassword } = this.state;
+            remarkEmail, remarkName, remarkUser, remarkPassword, isError, isMessage, message } = this.state;
 
         return (
             <div>
@@ -105,6 +120,7 @@ class LogIn extends Component {
                         <div style={classes.titleContainer}>
                             <span style={classes.title}>Sign In to Pizza</span>
                         </div>
+                        <div style={isError ? classes.errorMessage : classes.successMessage} className={isMessage ? "" : "errorHide"}>{message}</div>
                         <div style={classes.remarkedContainer}>
                             <div style={classes.textContainer}>
                                 <span style={classes.inputText}>Username or email address</span>
@@ -124,7 +140,7 @@ class LogIn extends Component {
                             <div style={classes.inputContainer}>
                                 <input
                                     style={!remarkPassword ? classes.input : classes.inputRemarked}
-                                    type="text"
+                                    type="password"
                                     value={this.state.password}
                                     placeholder={"Put here your password"}
                                     onChange={this.handleChangePassword.bind(this)}
@@ -135,8 +151,8 @@ class LogIn extends Component {
                         </SendButton>
                         </div>
                         <div style={classes.remarkedContNewAcc}>
-                        <span style={classes.newAccount}>New to Pizza? <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Create an account</div></span>
-                        <span style={classes.newAccount}><div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Continue as a Guest</div></span>
+                            <span style={classes.newAccount}>New to Pizza? <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Create an account</div></span>
+                            <span style={classes.newAccount}><div style={classes.newAccountLink} onClick={this.continueAsGuest.bind(this)}>Continue as a Guest</div></span>
                         </div>
                     </div>
                 </div>
@@ -152,6 +168,7 @@ class LogIn extends Component {
                         <div style={classes.titleContainer}>
                             <span style={classes.title}>Register to Pizza</span>
                         </div>
+                        <div style={isError ? classes.errorMessage : classes.successMessage} className={isMessage ? "" : "errorHide"}>{message}</div>
                         <div style={classes.remarkedContainer}>
                             <div style={classes.registerData}>
                                 <div style={classes.textContainerRegister}>
@@ -202,7 +219,7 @@ class LogIn extends Component {
                                 <div style={classes.inputContainer}>
                                     <input
                                         style={!remarkEmail ? classes.inputRegister : classes.inputRemarkedRegister}
-                                        type="text"
+                                        type="password"
                                         value={this.state.password}
                                         placeholder={"123456789"}
                                         onChange={this.handleChangePassword.bind(this)}

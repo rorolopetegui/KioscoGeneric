@@ -30,3 +30,6 @@
 .registerDisplayNone{
 	display: none;
 }
+.errorHide{
+	display: none;
+}
