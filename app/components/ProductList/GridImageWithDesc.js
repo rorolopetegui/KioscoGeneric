@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { IconButton, GridList, GridListTile, GridListTileBar, ListSubheader } from '@material-ui/core';
 import { AddShoppingCart, AddCircleOutline } from '@material-ui/icons';
 import { push } from 'connected-react-router';
-import { toggleModal } from '../reducers/pageState';
+import { toggleModal } from '../../reducers/pageState';
 
 class GridImageWIthDesc extends Component {
   render() {
@@ -18,7 +18,7 @@ class GridImageWIthDesc extends Component {
     ];
 
     return (
-      <div style={{ padding: '5%' }}>
+      <div>
         <GridList>
           <GridListTile
             key="Subheader"
@@ -48,7 +48,7 @@ class GridImageWIthDesc extends Component {
             >
               <img
                 /* eslint-disable global-require */
-                src={require(`../images/${tile.img}`)}
+                src={require(`../../images/${tile.img}`)}
                 alt={tile.title}
                 key={tile.img}
                 style={{ top: 'unset', transform: 'unset', width: '60%' }}

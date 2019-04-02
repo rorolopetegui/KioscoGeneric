@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SendButton from './SendButton';
+import SendButton from '../Buttons/SendButton';
 import './media-animation.css';
 import Users from '../../content/Users';
+import {
+    LoginTitle, LoginUserLabel, LoginUserTxtHelp, LoginPasswordLabel,
+    LoginPasswordTxtHelp, LoginButtonIn, LoginSignInNewText,
+    LoginSignInCreateAccountText, LoginSignInGuest,
+    RegisterTitle, RegisterNameLabel, RegisterNameTxtHelp,
+    RegisterMailLabel, RegisterMailTxtHelp, RegisterUserLabel,
+    RegisterUserTxtHelp, RegisterPasswordLabel, RegisterPasswordTxtHelp,
+    RegisterButtonRegister, RegisterLogInText, RegisterLogInButton
+} from '../../texts/login';
 
 /* eslint-disable global-require */
 class LogIn extends Component {
@@ -112,47 +121,47 @@ class LogIn extends Component {
                         <div style={classes.logoContainer}>
                             <img
                                 style={classes.logoImg}
-                                src={require(`../../images/Cismo.png`)}
+                                src={require(`../../images/Logo.png`)}
                                 alt='Cismo'
                             />
                         </div>
 
                         <div style={classes.titleContainer}>
-                            <span style={classes.title}>Sign In to Pizza</span>
+                            <span style={classes.title}>{LoginTitle}</span>
                         </div>
                         <div style={isError ? classes.errorMessage : classes.successMessage} className={isMessage ? "" : "errorHide"}>{message}</div>
                         <div style={classes.remarkedContainer}>
                             <div style={classes.textContainer}>
-                                <span style={classes.inputText}>Username or email address</span>
+                                <span style={classes.inputText}>{LoginUserLabel}</span>
                             </div>
                             <div style={classes.inputContainer}>
                                 <input
                                     style={!remarkUser ? classes.input : classes.inputRemarked}
                                     type="text"
                                     value={this.state.user}
-                                    placeholder={"Put here your username"}
+                                    placeholder={LoginUserTxtHelp}
                                     onChange={this.handleChangeUser.bind(this)}
                                 />
                             </div>
                             <div style={classes.textContainer}>
-                                <span style={classes.inputText}>Password</span>
+                                <span style={classes.inputText}>{LoginPasswordLabel}</span>
                             </div>
                             <div style={classes.inputContainer}>
                                 <input
                                     style={!remarkPassword ? classes.input : classes.inputRemarked}
                                     type="password"
                                     value={this.state.password}
-                                    placeholder={"Put here your password"}
+                                    placeholder={LoginPasswordTxtHelp}
                                     onChange={this.handleChangePassword.bind(this)}
                                 />
                             </div>
                             <SendButton classes={classes.button} action={this.submit.bind(this)} enabled={true}>
-                                Log In
-                        </SendButton>
+                                {LoginButtonIn}
+                            </SendButton>
                         </div>
                         <div style={classes.remarkedContNewAcc}>
-                            <span style={classes.newAccount}>New to Pizza? <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>Create an account</div></span>
-                            <span style={classes.newAccount}><div style={classes.newAccountLink} onClick={this.continueAsGuest.bind(this)}>Continue as a Guest</div></span>
+                            <span style={classes.newAccount}>{LoginSignInNewText} <div style={classes.newAccountLink} onClick={this.displayLogin.bind(this, true)}>{LoginSignInCreateAccountText}</div></span>
+                            <span style={classes.newAccount}><div style={classes.newAccountLink} onClick={this.continueAsGuest.bind(this)}>{LoginSignInGuest}</div></span>
                         </div>
                     </div>
                 </div>
@@ -161,77 +170,77 @@ class LogIn extends Component {
                         <div style={classes.logoContainer}>
                             <img
                                 style={classes.logoImgRegister}
-                                src={require(`../../images/Cismo.png`)}
+                                src={require(`../../images/Logo.png`)}
                                 alt='Cismo'
                             />
                         </div>
                         <div style={classes.titleContainer}>
-                            <span style={classes.title}>Register to Pizza</span>
+                            <span style={classes.title}>{RegisterTitle}</span>
                         </div>
                         <div style={isError ? classes.errorMessage : classes.successMessage} className={isMessage ? "" : "errorHide"}>{message}</div>
                         <div style={classes.remarkedContainer}>
                             <div style={classes.registerData}>
                                 <div style={classes.textContainerRegister}>
-                                    <span style={classes.inputText}>Full Name</span>
+                                    <span style={classes.inputText}>{RegisterNameLabel}</span>
                                 </div>
                                 <div style={classes.inputContainer}>
                                     <input
                                         style={!remarkName ? classes.inputRegister : classes.inputRemarkedRegister}
                                         type="text"
                                         value={this.state.fullname}
-                                        placeholder={"Jhon Doe"}
+                                        placeholder={RegisterNameTxtHelp}
                                         onChange={this.handleChangeName.bind(this)}
                                     />
                                 </div>
                             </div>
                             <div style={classes.registerData}>
                                 <div style={classes.textContainerRegister}>
-                                    <span style={classes.inputText}>Email</span>
+                                    <span style={classes.inputText}>{RegisterMailLabel}</span>
                                 </div>
                                 <div style={classes.inputContainer}>
                                     <input
                                         style={!remarkEmail ? classes.inputRegister : classes.inputRemarkedRegister}
                                         type="text"
                                         value={this.state.email}
-                                        placeholder={"example@cismosolutions.com"}
+                                        placeholder={RegisterMailTxtHelp}
                                         onChange={this.handleChangeMail.bind(this)}
                                     />
                                 </div>
                             </div>
                             <div style={classes.registerData}>
                                 <div style={classes.textContainerRegister}>
-                                    <span style={classes.inputText}>Username</span>
+                                    <span style={classes.inputText}>{RegisterUserLabel}</span>
                                 </div>
                                 <div style={classes.inputContainer}>
                                     <input
                                         style={!remarkEmail ? classes.inputRegister : classes.inputRemarkedRegister}
                                         type="text"
                                         value={this.state.user}
-                                        placeholder={"user1234"}
+                                        placeholder={RegisterUserTxtHelp}
                                         onChange={this.handleChangeUser.bind(this)}
                                     />
                                 </div>
                             </div>
                             <div style={classes.registerData}>
                                 <div style={classes.textContainerRegister}>
-                                    <span style={classes.inputText}>Password</span>
+                                    <span style={classes.inputText}>{RegisterPasswordLabel}</span>
                                 </div>
                                 <div style={classes.inputContainer}>
                                     <input
                                         style={!remarkEmail ? classes.inputRegister : classes.inputRemarkedRegister}
                                         type="password"
                                         value={this.state.password}
-                                        placeholder={"123456789"}
+                                        placeholder={RegisterPasswordTxtHelp}
                                         onChange={this.handleChangePassword.bind(this)}
                                     />
                                 </div>
                             </div>
                             <SendButton classes={classes.buttonRegister} action={this.register.bind(this)} enabled={true}>
-                                Register
+                                {RegisterButtonRegister}
                             </SendButton>
                         </div>
                         <div style={classes.remarkedContNewAcc}>
-                            <span style={classes.newAccount}>Already have an account to Pizza? <div style={classes.newAccountLink} onClick={this.displayRegister.bind(this, true)}>Sign In</div></span>
+                            <span style={classes.newAccount}>{RegisterLogInText} <div style={classes.newAccountLink} onClick={this.displayRegister.bind(this, true)}>{RegisterLogInButton}</div></span>
                         </div>
                     </div>
                 </div>

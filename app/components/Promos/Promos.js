@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PromosContent from '../../content/PromosContent';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './slider-animations.css';
 
-const maxPage = PromosContent.length;
 /* eslint-disable global-require */
 class Promos extends Component {
   state = {
@@ -12,20 +10,21 @@ class Promos extends Component {
     transitionRight: true,
   };
   nextPage = () => {
-    this.setState(state => ({ page: (state.page === (maxPage - 1) ? 0 : state.page + 1) }));
+    this.setState(state => ({ page: (state.page === (this.props.maxPage - 1) ? 0 : state.page + 1) }));
   };
   backPage = () => {
-    this.setState(state => ({ page: (state.page === 0 ? (maxPage - 1) : state.page - 1) }));
+    this.setState(state => ({ page: (state.page === 0 ? (this.props.maxPage - 1) : state.page - 1) }));
   };
+
   componentDidMount() {
     setInterval(() => {
       this.nextPage();
     }, 6500);
   };
   render() {
-    const { classes } = this.props;
+    const { classes, promos } = this.props;
     const { page, transitionRight } = this.state;
-    let pageSrc = PromosContent[page];
+    let pageSrc = promos[page];
     return (
       <TransitionGroup>
         <CSSTransition
@@ -45,6 +44,8 @@ class Promos extends Component {
 /* eslint-enable global-require */
 Promos.propTypes = {
   classes: PropTypes.object.isRequired,
+  maxPage: PropTypes.string.isRequired,
+  promos: PropTypes.array.isRequired,
 };
 
 export default Promos;

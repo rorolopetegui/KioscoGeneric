@@ -4,8 +4,10 @@ import ProductList from './ProductList';
 import PaymentMethod from './PaymentMethod';
 import FlavorCard from './FlavorCard';
 import FlavorsDropZone from './FlavorsDropZone';
-import GridImageWithDesc from './GridImageWithDesc';
+import GridImageWithDesc from './ProductList/GridImageWithDesc';
+import HeaderList from './ProductList/HeaderList';
 import PaymentTotal from './PaymentTotal';
+import CategoryList from './ProductList/CategoryList'
 
 export {
   HomeComponent,
@@ -16,4 +18,6 @@ export {
   FlavorCard,
   FlavorsDropZone,
   PaymentTotal,
+  HeaderList,
+  CategoryList,
 };

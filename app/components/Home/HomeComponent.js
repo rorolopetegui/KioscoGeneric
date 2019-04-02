@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PromosContent from '../../content/PromosContent';
 import Promos from '../Promos/Promos';
 import LogIn from '../Login/LogIn';
 import CloseModal from './CloseModal';
@@ -280,7 +281,7 @@ const styles = {
 /* eslint-disable global-require */
 class HomeComponent extends Component {
   state = {
-    displayBoard: true,
+    displayBoard: false,
   };
   displayBoard = () => {
     this.setState(state => ({ displayBoard: !state.displayBoard }));
@@ -289,7 +290,7 @@ class HomeComponent extends Component {
     const { displayBoard } = this.state;
     return (
       <div style={styles.body} onClick={!displayBoard ? this.displayBoard.bind(this) : (() => { })}>
-        <Promos classes={styles} />
+        <Promos classes={styles} promos={PromosContent} maxPage={PromosContent.length}/>
         <div style={styles.boardLogIn} className={displayBoard ? "boardDisplay" : "boardHidden"}>
           <div className={displayBoard ? "" : " loginDisplayNone"}>
             <CloseModal classes={styles.closeModal} action={this.displayBoard.bind(this)} />

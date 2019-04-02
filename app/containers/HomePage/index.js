@@ -30,17 +30,12 @@ const styles = {
     width: '100%',
   },
 };
-const welcomeImageName = 'WelcomeImage.jpg';
+
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <HomeComponent
-        imgName={welcomeImageName}
-        title="Grido"
-        text="La mejor heladeria del mundo"
-        styles={styles}
-      />
+      <HomeComponent styles={styles} />
     );
   }
 }
