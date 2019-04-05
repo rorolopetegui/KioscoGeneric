@@ -7,7 +7,8 @@ import FlavorsDropZone from './FlavorsDropZone';
 import GridImageWithDesc from './ProductList/GridImageWithDesc';
 import HeaderList from './ProductList/HeaderList';
 import PaymentTotal from './PaymentTotal';
-import CategoryList from './ProductList/CategoryList'
+import CategoryList from './ProductList/CategoryList';
+import Checkout from './Checkout/Checkout';
 
 export {
   HomeComponent,
@@ -20,4 +21,5 @@ export {
   PaymentTotal,
   HeaderList,
   CategoryList,
+  Checkout,
 };

@@ -44,7 +44,7 @@ class Promos extends Component {
 /* eslint-enable global-require */
 Promos.propTypes = {
   classes: PropTypes.object.isRequired,
-  maxPage: PropTypes.string.isRequired,
+  maxPage: PropTypes.number.isRequired,
   promos: PropTypes.array.isRequired,
 };
 

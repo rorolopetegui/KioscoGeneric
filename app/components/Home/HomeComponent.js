@@ -181,7 +181,7 @@ const styles = {
       container: {
         position: 'relative',
         marginTop: '15px',
-        backgroundColor: '#005959',// 0%, rgba(107,0,0,1) 10%)',
+        backgroundColor: '#FF4040',// 0%, rgba(107,0,0,1) 10%)',
         //backgroundColor: 'blue',
         width: '100%',
         float: 'left',
@@ -190,7 +190,7 @@ const styles = {
       containerHover: {
         position: 'relative',
         marginTop: '15px',
-        backgroundColor: '#008080',
+        backgroundColor: '#B22C2C',
         width: '100%',
         float: 'left',
         height: '42.5px',
@@ -209,7 +209,7 @@ const styles = {
         position: 'relative',
         marginTop: '15px',
         marginLeft: '2.5%',
-        backgroundColor: '#005959',// 0%, rgba(107,0,0,1) 10%)',
+        backgroundColor: '#FF4040',// 0%, rgba(107,0,0,1) 10%)',
         //backgroundColor: 'blue',
         width: '95%',
 
@@ -220,7 +220,7 @@ const styles = {
         position: 'relative',
         marginTop: '15px',
         marginLeft: '2.5%',
-        backgroundColor: '#008080',
+        backgroundColor: '#B22C2C',
         width: '95%',
         float: 'left',
         height: '42.5px',

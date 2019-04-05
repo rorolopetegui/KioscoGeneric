@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { GridImageWithDesc, HeaderList, CategoryList } from '../../components';
+import { GridImageWithDesc, HeaderList, CategoryList, Checkout } from '../../components';
 import { SimpleModal } from '../../modals';
 import Categories from '../../content/Categories';
+import Sales from '../../content/Sales';
 
 const styles = {
   headerList: {
@@ -62,7 +63,7 @@ const styles = {
         position: 'relative',
         marginTop: '10px',
         marginRight: '10px',
-        backgroundColor: '#005959',// 0%, rgba(107,0,0,1) 10%)',
+        backgroundColor: '#FF4040',// 0%, rgba(107,0,0,1) 10%)',
         width: '100px',
         float: 'right',
         height: '40px',
@@ -72,7 +73,7 @@ const styles = {
         position: 'relative',
         marginTop: '10px',
         marginRight: '10px',
-        backgroundColor: '#008080',
+        backgroundColor: '#B22C2C',
         width: '100px',
         float: 'right',
         height: '40px',
@@ -92,20 +93,22 @@ const styles = {
     width: '100%',
   },
   categoryContainer: {
-    width: '20%',
+    width: '15%',
     height: '550px',
     position: 'relative',
     float: 'left',
     padding: '20px',
-    overflow:'hidden',
+    overflow: 'hidden',
   },
   productContainer: {
-    width: '80%',
+    width: '65%',
+    height: '550px',
     position: 'relative',
     float: 'left',
+    overflow: 'hidden',
   },
   checkoutContainer: {
-    width: '10%',
+    width: '20%',
     position: 'relative',
     float: 'left',
   },
@@ -124,6 +127,148 @@ const styles = {
       float: 'left',
     },
   },
+  checkout: {
+    container: {
+      width: '100%',
+      position: 'relative',
+      float: 'left',
+    },
+    item: {
+      container: {
+        width: '100%',
+        position: 'relative',
+        float: 'left',
+      },
+      containerName: {
+        width: '65%',
+        position: 'relative',
+        float: 'left',
+      },
+      containerDesc: {
+        width: '65%',
+        position: 'relative',
+        float: 'left',
+      },
+      containerPrice: {
+        width: '35%',
+        position: 'relative',
+        float: 'left',
+      },
+      containerQty: {
+        width: '50%',
+        position: 'relative',
+        float: 'left',
+      },
+      containerTotal: {
+        width: '50%',
+        position: 'relative',
+        float: 'left',
+      },
+      itemName: {
+        color: '#333333',
+        fontFamily: 'Open Sans',
+        fontWeight: '700',
+        fontSize: '20px',
+      },
+      itemQty: {
+        color: '#333333',
+        fontFamily: 'Nunito',
+        fontWeight: '100',
+        fontSize: '15px',
+        marginLeft: '10px',
+      },
+      itemDesc: {
+        color: '#A6A6A6',
+        fontFamily: 'Nunito',
+        fontWeight: '100',
+        fontSize: '15px',
+      },
+    },
+    invoiceTotal: {
+      float: 'right',
+      color: '#FF4040',
+      fontFamily: 'Open Sans',
+      fontWeight: '700',
+      fontSize: '20px',
+    },
+    invoiceTotalAmount: {
+      float: 'right',
+      color: '#333333',
+      fontFamily: 'Open Sans',
+      fontWeight: '700',
+      fontSize: '20px',
+    },
+    button: {
+      container: {
+        position: 'relative',
+        marginTop: '15px',
+        backgroundColor: '#FF4040',// 0%, rgba(107,0,0,1) 10%)',
+        //backgroundColor: 'blue',
+        width: '100%',
+        float: 'left',
+        height: '42.5px',
+      },
+      containerHover: {
+        position: 'relative',
+        marginTop: '15px',
+        backgroundColor: '#B22C2C',
+        width: '100%',
+        float: 'left',
+        height: '42.5px',
+      },
+      innerContent: {
+        color: 'white',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    },
+  },
+  productList: {
+    container: {
+      width: '100%',
+      position: 'relative',
+      float: 'left',
+    },
+    containerImage: {
+      width: '10%',
+      position: 'relative',
+      float: 'left',
+    },
+    containerDesc: {
+      width: '80%',
+      position: 'relative',
+      float: 'left',
+    },
+    containerPrice: {
+      width: '10%',
+      position: 'relative',
+      float: 'right',
+    },
+    itemTitle: {
+      color: '#333333',
+      fontFamily: 'Open Sans',
+      fontWeight: '700',
+      fontSize: '20px',
+    },
+    itemDesc: {
+      color: '#313131',
+      fontFamily: 'Nunito',
+      fontWeight: '100',
+      fontSize: '15px',
+    },
+    itemImg: {
+      width: '100%',
+    },
+    itemPrice: {
+      color: '#333333',
+      fontFamily: 'Open Sans',
+      fontWeight: '700',
+      fontSize: '20px',
+    },
+  },
 };
 /* eslint-disable react/prefer-stateless-function */
 export default class ProductList extends PureComponent {
@@ -137,10 +282,10 @@ export default class ProductList extends PureComponent {
             <CategoryList classes={styles.categoryList} content={Categories} />
           </div>
           <div style={styles.productContainer}>
-            <GridImageWithDesc />
+            <GridImageWithDesc classes={styles.productList} />
           </div>
           <div style={styles.checkoutContainer}>
-            <span>CheckoutContaine</span>
+            <Checkout classes={styles.checkout} sales={Sales} />
           </div>
         </div>
 
