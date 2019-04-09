@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const ADD_FLAVOR = 'ADD_FLAVOR';
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 export const UPDATE_ROW_CART = 'UPDATE_ROW_CART';
 export const TOGGLE_MODAL_REGISTER = 'TOGGLE_MODAL_REGISTER';
 export const TOGGLE_PAYMENT_CASH = 'TOGGLE_PAYMENT_CASH';
@@ -18,6 +19,7 @@ export const initialState = {
   type: '',
   selectedFlavors: [],
   cart: [],
+  categoryId: '0',
   paymentCash: false,
   paymentCredit: false,
   paymentTotal: 0,
@@ -35,6 +37,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { cart: state.cart.concat(action.payload), selectedFlavors: [] })
     case UPDATE_ROW_CART:
       return Object.assign({}, state, { cart: action.payload, selectedFlavors: [] })
+    case UPDATE_CATEGORY:
+      return Object.assign({}, state, { categoryId: action.payload })
     case TOGGLE_MODAL_REGISTER:
       return Object.assign({}, state, { registerModalOpened: action.payload })
     case TOGGLE_PAYMENT_CASH:
@@ -95,16 +99,7 @@ export const addFlavorToSelected = (flavorName) => {
 
 export const addOrderToCart = (price, type, qty, desc) => {
   if (price && type) {
-    let img = '';
-    if (type === 'Cucurucho') {
-      img = 'cucuruchos.jpg';
-    } else if (type === 'Familiar') {
-      img = 'familiar.jpg';
-    } else if (type == 'Frizzio') {
-      img = 'frizzio.png';
-    } else {
-      img = 'palitos.jpg';
-    }
+    let img = 'SliceMuzza.png';
     return {
       type: ADD_TO_CART,
       payload: { type: type, price: price, qty: qty, img: img, desc: desc }
@@ -119,7 +114,15 @@ export const updateCartRow = (cart) => {
       payload: cart
     }
   }
-} 
+}
+export const updateCategoryId = (id) => {
+  if (id) {
+    return {
+      type: UPDATE_CATEGORY,
+      payload: id
+    }
+  }
+}
 export const updatePaymentTotal = (total) => {
   return {
     type: UPDATE_PAYMENT_TOTAL,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PromosContent from '../../content/PromosContent';
 import Promos from '../Promos/Promos';
 import SendButton from '../Buttons/SendButton';
-import { BackButton, PromoButton } from '../../texts/productListHeader';
+import { BackButton, PromoButton, CategoryTitle, ProductsTitle, CheckoutTitle } from '../../texts/productListHeader';
 
 class HeaderList extends Component {
     state = {
@@ -38,6 +38,42 @@ class HeaderList extends Component {
                         <SendButton classes={classes.button} action={this.backButton.bind(this)} enabled={true}>
                             {PromoButton}
                         </SendButton>
+                    </div>
+                </div>
+                <div
+                    style={classes.containerHeaderHelper}
+                >
+                    <div
+                        style={classes.categoryTitleContainer}
+                    >
+                        <span
+                            style={classes.textTitle}
+                        >
+                            {CategoryTitle}
+                        </span>
+                    </div>
+                    <div
+                        style={classes.productsTitleContainer}
+                    >
+                        <span
+                            style={classes.textTitle}
+                        >
+                            {ProductsTitle}
+                        </span>
+                        <img
+                            src={require(`../../images/bannerTitlesList.jpg`)}
+                            alt="Banner"
+                            style={classes.imgBanner}
+                        />
+                    </div>
+                    <div
+                        style={classes.checkoutTitleContainer}
+                    >
+                        <span
+                            style={classes.textTitle}
+                        >
+                            {CheckoutTitle}
+                        </span>
                     </div>
                 </div>
             </div>

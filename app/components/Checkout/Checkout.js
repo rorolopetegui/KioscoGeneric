@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { initialState } from '../../reducers/pageState';
 import ItemCheckout from './ItemCheckout';
 import SendButton from '../Buttons/SendButton';
+import { NoProductsMessage, totalMessage, btnText } from '../../texts/productListCheckout';
 
 /* eslint-disable react/prefer-stateless-function */
 class Checkout extends Component {
     submitOrder = () => {
         console.log("Submit order");
     }
+    updateTotal = (cart) => {
+        return cart.map(({ price, qty }) => price * qty).reduce((sum, i) => sum + i, 0);
+    }
     render() {
-        const { classes, sales } = this.props;
+        const { classes, cart } = this.props;
+        const paymentTotal = this.updateTotal(cart);
         return (
             <div style={classes.container}>
                 <div style={classes.container}>
-                    {sales.map((item, index) =>
+                    {cart.length <= 0 &&
+                        <span
+                            style={classes.notProducts}
+                        >
+                            {NoProductsMessage}
+                        </span>
+                    }
+                    {cart.map((item, index) =>
                         <div key={index}
                             style={classes.container}
                         >
@@ -26,17 +40,17 @@ class Checkout extends Component {
                         <span
                             style={classes.invoiceTotal}
                         >
-                            Total:
-                        <span
+                            {totalMessage}
+                            <span
                                 style={classes.invoiceTotalAmount}
                             >
-                                $1.99
-                        </span>
+                                ${paymentTotal}
+                            </span>
                         </span>
                     </div>
                     <div style={classes.container}>
                         <SendButton classes={classes.button} action={this.submitOrder.bind(this)}>
-                            Finalizar Pedido
+                            {btnText}
                         </SendButton>
                     </div>
                 </div>
@@ -48,8 +62,17 @@ class Checkout extends Component {
 
 /* eslint-enable global-require */
 Checkout.propTypes = {
+    cart: PropTypes.array.isRequired,
     classes: PropTypes.object.isRequired,
-    sales: PropTypes.array.isRequired,
 };
 
-export default Checkout;
+const mapStateToProps = (state) => {
+    const p = state.get('pageState', initialState);
+    return {
+        cart: p.cart,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(Checkout);

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { GridImageWithDesc, HeaderList, CategoryList, Checkout } from '../../components';
 import { SimpleModal } from '../../modals';
 import Categories from '../../content/Categories';
-import Sales from '../../content/Sales';
 
 const styles = {
   headerList: {
@@ -45,6 +44,56 @@ const styles = {
       height: '100%',
       position: 'relative',
       float: 'left',
+    },
+    containerHeaderHelper: {
+      width: '100%',
+      position: 'relative',
+      float: 'left',
+      height: '65px',
+      marginTop: '5px',
+      color: 'white',
+      fontFamily: 'Open Sans',
+      fontWeight: '700',
+      fontSize: '17px',
+      overflow: 'hidden',
+    },
+    categoryTitleContainer: {
+      width: '15%',
+      height: '100%',
+      position: 'relative',
+      float: 'left',
+      backgroundColor: '#FF4040',
+      paddingLeft: '8px',
+      paddingTop: '3px',
+    },
+    productsTitleContainer: {
+      width: '65%',
+      height: '100%',
+      position: 'relative',
+      float: 'left',
+      paddingLeft: '8px',
+      paddingTop: '3px',
+    },
+    checkoutTitleContainer: {
+      width: '20%',
+      height: '100%',
+      position: 'relative',
+      float: 'left',
+      backgroundColor: '#FF4040',
+      paddingLeft: '8px',
+      paddingTop: '3px',
+    },
+    textTitle: {
+      zIndex: '1',
+      position:'relative',
+    },
+    imgBanner: {
+      filter: 'brightness(50%)',
+      width: '100%',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      zIndex: '0',
     },
     imgLogo: {
       width: '100px',
@@ -132,6 +181,7 @@ const styles = {
       width: '100%',
       position: 'relative',
       float: 'left',
+      textAlign: 'center',
     },
     item: {
       container: {
@@ -225,6 +275,12 @@ const styles = {
         transform: 'translate(-50%, -50%)',
       },
     },
+    notProducts: {
+      color: '#A6A6A6',
+      fontFamily: 'Nunito',
+      fontWeight: '100',
+      fontSize: '15px',
+    },
   },
   productList: {
     container: {
@@ -276,7 +332,6 @@ export default class ProductList extends PureComponent {
     return (
       <div>
         <HeaderList classes={styles.headerList} />
-        <hr />
         <div style={styles.contentContainer}>
           <div style={styles.categoryContainer}>
             <CategoryList classes={styles.categoryList} content={Categories} />
@@ -285,7 +340,7 @@ export default class ProductList extends PureComponent {
             <GridImageWithDesc classes={styles.productList} />
           </div>
           <div style={styles.checkoutContainer}>
-            <Checkout classes={styles.checkout} sales={Sales} />
+            <Checkout classes={styles.checkout} />
           </div>
         </div>
 

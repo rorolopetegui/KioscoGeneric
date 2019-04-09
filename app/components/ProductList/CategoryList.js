@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { initialState, updateCategoryId } from '../../reducers/pageState';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,6 +16,7 @@ class CategoryList extends Component {
 
     changePage = (currentSlide, nextSlide) => {
         this.setState(state => ({ page: nextSlide }));
+        this.props.updateCategoryId(nextSlide.toString());
     };
 
     testfunc = (currentSlide, nextSlide) => {
@@ -22,6 +26,7 @@ class CategoryList extends Component {
     render() {
         const { classes, content } = this.props;
         const { page } = this.state;
+        //this.changePage(0, categoryId);
         var settings = {
             centerMode: true,
             slidesToShow: 3,
@@ -60,6 +65,26 @@ class CategoryList extends Component {
 CategoryList.propTypes = {
     classes: PropTypes.object.isRequired,
     content: PropTypes.array.isRequired,
+    categoryId: PropTypes.string.isRequired,
+    updateCategoryId: PropTypes.func.isRequired,
 };
 
-export default CategoryList;
+const mapStateToProps = (state) => {
+    const p = state.get('pageState', initialState);
+    return {
+        categoryId: p.categoryId,
+    }
+}
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            updateCategoryId,
+        },
+        dispatch,
+    );
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(CategoryList);

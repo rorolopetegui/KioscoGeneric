@@ -88,7 +88,7 @@ class SimpleModal extends Component {
   render() {
     const { modalOpened, addOrderToCart, selectedFlavors, type } = this.props;
     const { quantity } = this.state;
-    const image = 'icecream-full.png';
+    const image = 'SliceMuzza.png';
 
     return (
       <div>

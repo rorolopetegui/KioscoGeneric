@@ -11,7 +11,7 @@ const ItemCheckout = props => {
                     <span
                         style={classes.itemName}
                     >
-                        {item.name}
+                        {item.type}
                     </span>
                 </div>
                 <div style={classes.containerPrice}>
@@ -26,7 +26,7 @@ const ItemCheckout = props => {
                         <span
                             style={classes.itemName}
                         >
-                            ${item.uPrice}
+                            ${item.price}
                         </span>
                     </div>
                 </div>

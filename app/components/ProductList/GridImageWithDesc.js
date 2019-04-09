@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { initialState } from '../../reducers/pageState';
 import { push } from 'connected-react-router';
 import { toggleModal } from '../../reducers/pageState';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Categories from '../../content/Categories';
 //import './carousel.css';
 
 class GridImageWIthDesc extends Component {
@@ -26,15 +28,25 @@ class GridImageWIthDesc extends Component {
   onSwipe = () => {
     this.setState({ onSwipe: true });
   }
+  getProducts = () => {
+    for (var i = 0; i < Categories.length; i++) {
+      if (Categories[i]._id === this.props.categoryId)
+        return Categories[i].products;
+    }
+    //Categories
+    //this.props.categoryId
+
+  }
   render() {
     // Hard coded for demo
-    const tileData = [
+    const tileData = this.getProducts();
+    /*const tileData = [
       { img: 'cucuruchos.jpg', name: 'Cucuruchos', price: 15, type: 'Cucurucho' },
       { img: 'familiar.jpg', name: 'Familiar', price: 30, type: 'Familiar' },
       { img: 'frizzio.png', name: 'Frizzio', price: 100, type: 'Frizzio' },
       { img: 'palitos.jpg', name: 'Palitos', price: 5, type: 'Palitos' },
       { img: 'palitos.jpg', name: 'Palitos', price: 5, type: 'Palitos' },
-    ];
+    ];*/
     var settings = {
       centerMode: true,
       slidesToShow: 1,
@@ -79,7 +91,7 @@ class GridImageWIthDesc extends Component {
                 <span
                   style={classes.itemDesc}
                 >
-                  Una Descripcion
+                  {tile.desc}
                 </span>
               </div>
               <div style={classes.containerPrice}>
@@ -101,7 +113,15 @@ class GridImageWIthDesc extends Component {
 GridImageWIthDesc.propTypes = {
   classes: PropTypes.object.isRequired,
   toggleModal: PropTypes.func.isRequired,
+  categoryId: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = (state) => {
+  const p = state.get('pageState', initialState);
+  return {
+      categoryId: p.categoryId,
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
@@ -114,6 +134,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(GridImageWIthDesc);
